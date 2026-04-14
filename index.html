@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster | Next-Gen Learning</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%233b82f6%22/><path d=%22M50 20L20 40l30 20 30-20-30-20zM20 60l30 20 30-20M20 50l30 20 30-20%22 fill=%22none%22 stroke=%22white%22 stroke-width=%228%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-dark text-white font-sans selection-orange">
+    <div id="app" class="app-container">
+        <!-- Navigation -->
+        <nav id="main-nav" class="main-nav">
+            <div class="logo-container" id="logo-home">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <h1 class="logo-text">QUIZMASTER</h1>
+            </div>
+            <div id="auth-nav" class="nav-actions">
+                <button id="login-btn" class="btn-link">Login</button>
+                <button id="signup-btn" class="btn-primary">Get Started</button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="main-content" class="main-content">
+            <!-- Hero Section (Default) -->
+            <section id="hero" class="hero-section">
+                <h2 class="hero-title">
+                    EVOLVE YOUR <br> <span>KNOWLEDGE.</span>
+                </h2>
+                <p class="hero-subtitle">
+                    Transform any document into an interactive learning experience. Adaptive sessions tailored to your unique learning path.
+                </p>
+                <div class="hero-actions">
+                    <button id="cta-generate" class="btn-generate">
+                        Generate Session
+                    </button>
+                    <button id="cta-multiplayer" class="btn-outline">
+                        Multiplayer Arena
+                    </button>
+                </div>
+            </section>
+
+            <!-- Dynamic Views will be injected here -->
+            <div id="view-container" class="view-container hidden"></div>
+        </main>
+
+        <!-- Footer -->
+        <footer id="main-footer" class="main-footer" style="border-top: 1px solid var(--border-color); padding: 4rem 2rem; margin-top: auto;">
+            <div style="max-width: 80rem; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem;">
+                <div>
+                    <h3 style="font-family: var(--font-display); font-weight: 800; margin-bottom: 1rem;">QUIZMASTER</h3>
+                    <p style="color: var(--text-muted); font-size: 0.875rem;">The next generation of intelligent learning. Built for students, professionals, and the curious.</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; color: var(--primary);">Platform</h4>
+                    <ul style="list-style: none; display: grid; gap: 0.75rem;">
+                        <li><a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s;">Leaderboard</a></li>
+                        <li><a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s;">Achievements</a></li>
+                        <li><a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s;">Live Quizzes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; color: var(--primary);">Support</h4>
+                    <ul style="list-style: none; display: grid; gap: 0.75rem;">
+                        <li><a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s;">Help Center</a></li>
+                        <li><a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s;">API Docs</a></li>
+                        <li><a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s;">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay hidden" style="position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1.5rem;">
+        <div id="modal-content" class="glass" style="max-width: 32rem; width: 100%; position: relative; animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+            <button id="modal-close" style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-muted); cursor: pointer; transition: color 0.2s;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/app.js"></script>
+</body>
+</html>
