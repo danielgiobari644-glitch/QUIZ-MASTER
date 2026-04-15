@@ -55,7 +55,7 @@ async function loadQuizOnly(quizId) {
         if (quizSnap.exists()) {
             renderQuizPlay({ quizId, quizData: quizSnap.data() });
         } else {
-            viewContainer.innerHTML = '<div class="text-center py-24"><h2 class="text-3xl font-display mb-4">Quiz Not Found</h2><button onclick="window.location.href=\'/\'" class="btn-primary">Go Home</button></div>';
+            viewContainer.innerHTML = '<div class="text-center py-24"><h2 class="text-3xl font-display mb-4">Quiz Not Found</h2><button onclick="window.location.href=\'./\'" class="btn-primary">Go Home</button></div>';
         }
     } catch (error) {
         console.error(error);
